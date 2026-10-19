@@ -30,14 +30,11 @@ def create_request_session():
 
     return session
 
-def s3_client_initialize(object_name, weather_data):
-    s3_access_key = os.getenv("IMPOSSIBLE_CLOUD_ACCESS_KEY")
-    s3_secret_key = os.getenv("IMPOSSIBLE_CLOUD_SECRET_KEY")
-
+def s3_client_initialize():
     s3_client = boto3.client(
         's3',
-        aws_access_key_id = s3_access_key,
-        aws_secret_access_key = s3_secret_key,
+        aws_access_key_id = os.getenv("IMPOSSIBLE_CLOUD_ACCESS_KEY"),
+        aws_secret_access_key = os.getenv("IMPOSSIBLE_CLOUD_SECRET_KEY"),
         endpoint_url = 'https://eu-central-2.storage.impossibleapi.net'
     )
     return s3_client
